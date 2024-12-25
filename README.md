@@ -38,6 +38,7 @@ word3
 translation3
 ```
 You can add as many as you want. What you need to remember is to make a space between the words if you want to add a new word
+
 4. Start the program again and learn with the vocabularies
 
 
