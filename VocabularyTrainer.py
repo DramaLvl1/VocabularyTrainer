@@ -9,6 +9,9 @@ version = "1.0.0"
 
 def main():
     generate_file()
+    file = open("vocabulary.txt", "r")
+    global voc
+    voc = file.readlines()
     send_voclist()
     # abfrage folgt
     inp = input(Translator.getMessage(getLanguage(), "learn_again")).lower()  # ID learn_again
@@ -18,25 +21,6 @@ def main():
 
 # first the functions
 def generate_file():
-    if not os.path.exists("vocabulary.txt"):
-        print(Translator.getMessage(getLanguage(), "check_file"))
-        time.sleep(1)
-        print(Translator.getMessage(getLanguage(), "file_not_exists"))
-        vocfile = open("vocabulary.txt", "w")
-        vocfile.writelines("example\n"
-                           "Beispiel\n"
-                           "\n"
-                           "example2"
-                           "Beispiel2"
-                           "\n"
-                           "spain\n"
-                           "Spanisch")
-        vocfile.close()
-
-    else:
-        print(Translator.getMessage(getLanguage(), "file_exists"))
-        time.sleep(1)  # to let the user realize, what is happening in this program
-
     if not os.path.exists("settings.txt"):
         settings_file = open("settings.txt", "w")
         settings_file.writelines(["# Info: do not change the settings if you don't know, what you are doing with that\n",
@@ -52,6 +36,26 @@ def generate_file():
                                   "setting_version: 2.0.0\n",
                                   "language: german"])
         settings_file.close()
+
+    if not os.path.exists("vocabulary.txt"):
+        print(Translator.getMessage(getLanguage(), "check_file"))
+        time.sleep(1)
+        print(Translator.getMessage(getLanguage(), "file_not_exists"))
+        vocfile = open("vocabulary.txt", "w")
+        vocfile.writelines("example\n"
+                           "Beispiel\n"
+                           "\n"
+                           "example2\n"
+                           "Beispiel2\n"
+                           "\n"
+                           "spain\n"
+                           "Spanisch")
+        vocfile.close()
+
+    else:
+        print(Translator.getMessage(getLanguage(), "file_exists"))
+        time.sleep(1)  # to let the user realize, what is happening in this program
+
 
 
 def checkSettingVersion():
@@ -103,10 +107,6 @@ def calculate_grade(r, vx):  # add different grading system later
 # get the amount of lines in the file
 def lines():
     return len(voc)
-
-
-file = open("vocabulary.txt", "r")
-voc = file.readlines()
 
 
 def voc_amount():
@@ -164,7 +164,7 @@ def add_space(message):
 
 
 def check_result(answers: list | dict, v_amount: int, mode: str):
-    msg = ""
+    msg = "\n"
     amount = 1
     voc_index = 0
     if mode == "chronological":  # answers: list
@@ -193,7 +193,6 @@ def check_result(answers: list | dict, v_amount: int, mode: str):
             # v_amount: int
             # mode: str
             for v in voc:
-                print(v)
                 if v.replace("\n", "") not in answers:
                     continue
 
@@ -235,11 +234,9 @@ def perform_test(mode):
                     correct += 1
                     index += 3
                     answer_list.append(ask)
-                    print(vocs)
                 else:
                     index += 3
                     answer_list.append(ask)
-                    print(vocs)
                     continue
 
         print(check_result(answer_list, voc_amount(), "chronological"))
