@@ -9,7 +9,7 @@ because you always have to run the program to get one vocabulary.
 
 With this program I want to make everyone access their own vocabulary trainer with the possibility to enter your own vocabularies 
 
-VocabularyTrainer is a just for fun CLI (command line interface) project, where you can learn vocabularies with your own vocabularies, learn and make a test to get your own grade.#
+VocabularyTrainer is a just for fun CLI (command line interface) project, where you can learn vocabularies with your own vocabularies, learn and make a test to get your own grade.
 
 The current grading system used in this program is the german grading system from 1-6
 
