@@ -9,7 +9,7 @@ version = "1.0.0"
 
 def main():
     generate_file()
-    file = open("vocabulary.txt", "r")
+    file = open("vocabulary.txt", "r", encoding="utf-8")
     global voc
     voc = file.readlines()
     send_voclist()
@@ -26,7 +26,7 @@ def generate_file():
         settings_file.writelines(["# Info: do not change the settings if you don't know, what you are doing with that\n",
                          "# available languages: german, english\n",
                          "setting_version: 1.0.0\n",
-                         "language: german"])
+                         "language: english"])
         settings_file.close()
 
     elif checkSettingVersion() != version:  # if settings exists but wrong setting version
@@ -34,7 +34,7 @@ def generate_file():
         settings_file.writelines(["# Info: do not change the settings if you don't know, what you are doing with that\n",
                                   "# available languages: german, english\n",
                                   "setting_version: 2.0.0\n",
-                                  "language: german"])
+                                  "language: english"])
         settings_file.close()
 
     if not os.path.exists("vocabulary.txt"):
